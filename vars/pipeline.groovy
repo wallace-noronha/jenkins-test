@@ -1,15 +1,18 @@
 import io.jenkins.plugins.KafkaProducerMessage
 
-stages {
-    agent none
-    node {
-        stage('Build') {
-            KafkaProducerMessage kafka = new KafkaProducerMessage("kafka:9091", "teste")
-            kafka.produce("Mensagem de teste")
+
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
+        stage('build') {
+            steps {
+                KafkaProducerMessage kafka = new KafkaProducerMessage("kafka:9091", "teste")
+                kafka.produce("Mensagem de teste")
+            }
         }
     }
-
 }
+
 //def call(body){
 //
 //    def message = "Hello World!"
