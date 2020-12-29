@@ -5,12 +5,10 @@ pipeline {
     agent { docker { image 'maven:3.3.3' } }
     stages {
         node {
-            stage('build') {
-                steps {
-                    KafkaProducerMessage kafka = new KafkaProducerMessage("kafka:9091", "teste")
-                    kafka.produce("Mensagem de teste")
-                }
-            }
+
+            KafkaProducerMessage kafka = new KafkaProducerMessage("kafka:9091", "teste")
+            kafka.produce("Mensagem de teste")
+
         }
     }
 }
