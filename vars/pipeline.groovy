@@ -1,7 +1,7 @@
 import io.jenkins.plugins.KafkaProducerMessage
 
-agent none
 stages {
+    agent none
     node {
         stage('Build') {
             KafkaProducerMessage kafka = new KafkaProducerMessage("kafka:9091", "teste")
